@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 50%;
+  height:50%;
+  margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background-color: #2421b0ff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    color: white;
+    padding: 20px;
+    font-size: 18px;
+    text-align: center;
+    margin-left: auto;
+}
+
+td, th {
+  border: 1px solid #010d07ff;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #8e2743ff;
+}
+tr:nth-child(odd) {
+  background-color: #453ab1ff;
+}
+th {
+  background-color: #080b10ff;
+  color: white;
+}
+h2 {
+    text-align: center;
+    color: black;
+    margin-top: 20px;
+    font-size: 24px;
+    background-color: #c42222ff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0,0,
+0,0.1);
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #c42222ff;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}
+ form {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: none;   
+    cursor: pointer;
+    background-color: #080b10ff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<h2>HTML Table</h2>
+{% if key1 %}
+<table>
+  <tr>
+    <th>ID</th>
+    <th>NAME</th>
+    <th>EMAIL</th>
+    <th>DESCRIPTION</th>
+    <th>EDIT</th>
+    <th>DELETE</th>
+
+  </tr>
+  {% for item in key1 %}
+  <tr>
+    <td>{{item.id}}</td>
+    <td>{{item.name}}</td>
+    <td>{{item.email}}</td>
+    <td>{{item.description}}</td>
+    <td>
+        <form method="post" action="{% url 'edit_data' item.id %}">
+            {% csrf_token %}
+            <input type="submit" value="Edit">
+        </form>
+    </td>
+    <td>
+        <form method="post" action="{% url 'delete_data' item.id %}">
+            {% csrf_token %}
+            <input type="submit" value="Delete">
+        </form>
+    </td>
+  </tr>
+    {% endfor %} 
+  
+</table>
+{% endif %}
+
+</body>
+</html>

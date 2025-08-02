@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #a5656dff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(47, 54, 176, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        .info {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        .info span {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .info p {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome {{ request.session.name }}</h1>
+        <p><strong>you succesfully login ..</strong></p>
+        
+        {% comment %} <div class="info">
+            <p><span>Name:</span> {{ request.session.name }}</p>
+            <p><span>Email:</span> {{ request.session.email }}</p>
+            <p><span>Description:</span> {{ request.session.description }}</p>
+        </div> {% endcomment %}
+    </div>
+    <form action="{% url 'contact' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="CLICK" style="display: block; margin: 20px auto; padding: 10px 20px; background-color: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer;">
+       
+       
+    </form>
+    <form action="{% url 'logout_user' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Logout" style="display: block; margin: 20px auto; padding: 10px 20px; background-color: #e74c3c; color: white; border: none; border-radius: 5px; cursor: pointer;">
+</body>
+</html>

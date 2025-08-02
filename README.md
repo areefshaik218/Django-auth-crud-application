@@ -1,0 +1,1 @@
+# Django-auth-crud-application
